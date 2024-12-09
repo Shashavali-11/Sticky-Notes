@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Notes</title>
+    <style>
+        /* Basic Reset */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
+
+        /* Add Note Button */
+        #btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        #btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Notes Container */
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        /* Individual Note */
+        .note {
+            width: 200px;
+            height: 250px;
+            background-color: #fff8b0;
+            margin: 10px;
+            padding: 10px;
+            box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            position: relative;
+        }
+
+        /* Textarea inside Note */
+        .note textarea {
+            width: 100%;
+            height: 80%;
+            border: none;
+            resize: none;
+            background: transparent;
+            font-size: 14px;
+            color: #333;
+            outline: none;
+        }
+
+        /* Delete Button */
+        .note .del {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.3s ease;
+        }
+
+        .note .del:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">Add Note</button>
+    <div id="container"></div>
+
+    <script>
+        let button = document.getElementById("btn");
+        
+        button.addEventListener("click", function addnote() {
+            let container = document.getElementById("container");
+            
+            let note = document.createElement("div");
+            note.classList.add("note");
+
+            let textarea = document.createElement("textarea");
+            textarea.placeholder = "Type a Note...";
+            
+            let delbtn = document.createElement("button");
+            delbtn.classList.add("del");
+            delbtn.innerText = "Delete";
+            delbtn.addEventListener("click", function del() {
+                note.remove();
+            });
+
+            note.append(textarea);
+            note.append(delbtn);
+            container.append(note);
+        });
+    </script>
+</body>
+</html>
